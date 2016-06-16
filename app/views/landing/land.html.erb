@@ -14,7 +14,7 @@
   <input type="submit" value="Add Student"/>
 </form>
 
-<form action=/landing/see_class>
+<form action="/display/see_class" method="get">
   <select id="seeClass" name="seeClass">
     <% if Student.maximum('class_number').nil? %>
       <option value="No Classes">No Classes</option>
@@ -28,7 +28,9 @@
 </form>
 
 <ul>
-  <% @class_students.each do |student| %>
-    <li><%= "#{student.first_name} #{student.last_name}"%></li>
+  <% if !@class_students.nil? %>
+    <% @class_students.each do |student| %>
+      <li><%= "#{student.first_name} #{student.last_name}"%></li>
+    <% end %>
   <% end %>
 </ul>

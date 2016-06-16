@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'manager/add_student'
+  get 'display/see_class'
 
-  get 'landing/see_class'
+  get 'manager/add_student'
 
   root 'landing#land'
 
