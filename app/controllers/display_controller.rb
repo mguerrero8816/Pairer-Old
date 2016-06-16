@@ -2,7 +2,7 @@ class DisplayController < ApplicationController
   def see_class
     @class_number = params[:seeClass]
     @class_number.slice!'Class '
-    @class_students = Student.where('class_number = ?', @class_number)
-    render '/landing/land.html.erb'
+    cookies[:seeClass] = @class_number
+    redirect_to '/'
   end
 end

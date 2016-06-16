@@ -20,7 +20,11 @@
       <option value="No Classes">No Classes</option>
     <% else %>
       <% (Student.maximum('class_number')).times do |i| %>
-        <option value="Class <%=i+1%>">Class <%=i+1%></option>
+        <option value="Class <%=i+1%>"
+          <% if @class_number.to_i == i+1 %>
+            selected
+          <% end %>
+        >Class <%=i+1%></option>
       <% end %>
     <% end %>
   </select>
@@ -30,7 +34,13 @@
 <ul>
   <% if !@class_students.nil? %>
     <% @class_students.each do |student| %>
-      <li><%= "#{student.first_name} #{student.last_name}"%></li>
+      <li>
+        <form action="/manager/delete" method="get">
+          <input type="submit" value="Delete"/>
+          <a name="displayedFirstName"><%= "#{student.first_name}" %></a>
+          <a name="displayedLastName"><%= "#{student.last_name}" %></a>
+        </form>
+      </li>
     <% end %>
   <% end %>
 </ul>
