@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get 'manager/add_student'
 
+  get 'manager/delete'
+
   root 'landing#land'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -36,9 +36,8 @@
     <% @class_students.each do |student| %>
       <li>
         <form action="/manager/delete" method="get">
-          <input type="submit" value="Delete"/>
-          <a name="displayedFirstName"><%= "#{student.first_name}" %></a>
-          <a name="displayedLastName"><%= "#{student.last_name}" %></a>
+          <%= link_to('Delete', {:controller => 'manager', :action => 'delete', :displayedFirstName => "#{student.first_name}", :displayedLastName => "#{student.last_name}" }) %>
+          <span><%= "#{student.first_name} " "#{student.last_name}" %></span>
         </form>
       </li>
     <% end %>
