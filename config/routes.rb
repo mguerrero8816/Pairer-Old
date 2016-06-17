@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get 'manager/delete'
 
+  get 'manager/delete_pair'
+
+  get 'display/pair'
+
   root 'landing#land'
 
   # The priority is based upon order of creation: first created -> highest priority.
