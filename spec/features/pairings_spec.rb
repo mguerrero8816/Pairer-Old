@@ -18,7 +18,8 @@ RSpec.feature "Pairings", type: :feature do
         click_link 'Pair'
       end
       Then 'I can see the students paired' do
-        expect(page).to have_content 'Mike Guerrero and Someone Here' || 'Someone Here and Mike Guerrero'
+        expect(page).to have_content 'Mike Guerrero and Someone Here'
+        expect(page).to have_content 'Someone Here and Mike Guerrero'
       end
       When 'I add more students' do
         fill_in 'firstName', with: 'Something'

@@ -1,10 +1,12 @@
 class ManagerController < ApplicationController
   def add_student
-    @new_student = Student.new
-    @new_student.first_name = params[:firstName].strip
-    @new_student.last_name = params[:lastName].strip
-    @new_student.class_number = params[:classNumber]
-    @new_student.save
+    if !params[:firstName].blank? && !params[:lastName].blank? &&
+      @new_student = Student.new
+      @new_student.first_name = params[:firstName].strip.capitalize
+      @new_student.last_name = params[:lastName].strip.capitalize
+      @new_student.class_number = params[:classNumber]
+      @new_student.save
+    end
     redirect_to '/'
   end
 

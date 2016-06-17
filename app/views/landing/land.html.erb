@@ -29,10 +29,11 @@
     <% end %>
   </select>
   <input type="submit" value="See Class"/>
+  <%= link_to('Pair', {:controller => 'display', :action => 'pair'})%>
 </form>
 
+<p>Students</p>
 <ul>
-  Students
   <% if !@class_students.nil? %>
     <% @class_students.each do |student| %>
       <li>
@@ -42,8 +43,12 @@
     <% end %>
   <% end %>
 </ul>
-<%= link_to('Pair', {:controller => 'display', :action => 'pair'})%>
-
+<p>
+  Today's Pairs: Class
+  <% if !@paired_class.nil? %>
+    <%= @paired_class %>
+  <% end %>
+</p>
 <ul>
   <% if !@pair_results.nil? %>
     <% print_results = 0 %>
@@ -58,13 +63,13 @@
   <% end %>
 </ul>
 
+<p>Old Pairs</p>
 <ul>
-  Old Pairs
   <% if !@student_pairs.nil? %>
     <% @student_pairs.each do |pair| %>
       <li>
         <%= link_to('Delete', {:controller => 'manager', :action => 'delete_pair', :displayedFirstId => "#{pair.first_id}", :displayedSecondId => "#{pair.second_id}" }) %>
-        <%= "#{pair.pair_set} " "#{pair.first_full_name} " "#{pair.second_full_name}" %>
+        <%= "Class #{@paired_class} " "Set #{pair.pair_set} " "#{pair.first_full_name} and " "#{pair.second_full_name}" %>
       </li>
     <% end %>
   <% end %>

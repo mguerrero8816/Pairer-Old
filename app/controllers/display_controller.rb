@@ -27,14 +27,16 @@ class DisplayController < ApplicationController
       @pair_results << "#{Student.find(count).first_name} #{Student.find(count).last_name}"
     }
     cookies[:pair_results] = @pair_results.to_yaml
+    @paired_class = cookies[:seeClass].to_i
+    cookies[:paired_class] = @paired_class
     redirect_to '/'
   end
 
   def form_pairs
-    if Pair.maximum('pair_set').nil?
+    if Pair.where(:class_number => @paired_class).maximum('pair_set').nil?
       set_number = 1
     else
-      set_number = Pair.maximum('pair_set') + 1
+      set_number = Pair.where(:class_number => @paired_class).maximum('pair_set') + 1
     end
 
     count = 0
